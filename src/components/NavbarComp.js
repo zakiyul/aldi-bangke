@@ -25,7 +25,7 @@ const NavbarComp = ({isLogin}) => {
               <Link to="/analisis" className="nav-link">
                 Login
               </Link> : <Link to="/admin" className="nav-link">
-              Barang
+                Dashboard
             </Link>}
             
           </Nav>

@@ -2,16 +2,19 @@ import React from 'react'
 import CarouselComp from '../components/CarouselComp'
 import FooterComp from '../components/FooterComp'
 import NavbarComp from '../components/NavbarComp'
+import { AuthContext } from '../context/AuthContext'
 
 const HomePage = () => {
-  const [login, setLogin] = React.useState(false);
-  const loginHandler = () => {
-    setLogin(!login)
-  }
+  const {isLogin, login, logout} = React.useContext(AuthContext);
+
+  React.useEffect(() => {
+    console.log('ini adalah halaman home')
+    console.log(isLogin)
+  },[])
+
   return (
     <>
-        <NavbarComp isLogin={login}/>
-        <button className="btn btn-primary" onClick={loginHandler}>{login ? 'Login':'Logout'}</button>
+        <NavbarComp isLogin={isLogin}/>
         <CarouselComp/>
         <div className="container" style={{ marginTop:'100px', marginBottom:'100px' }}>
             <h2>Tentang Kami</h2>
@@ -20,6 +23,8 @@ const HomePage = () => {
         </div>
         <div className="container" style={{ marginTop:'100px', marginBottom:'100px' }}>
           <h2>Layanan Kami</h2>
+          {/* btn login */}
+          {isLogin ? <button className="btn btn-primary" onClick={logout}>Login</button> : <button onClick={login} className="btn btn-primary">Logout</button> }
           <div className="row">
             <div className="col-md-4">
               <div className="card p-3">
