@@ -21,12 +21,12 @@ const NavbarComp = ({isLogin}) => {
             <Link to="/toko" className="nav-link">
               Toko
             </Link>
-            {isLogin ? 
-              <Link to="/analisis" className="nav-link">
+            {isLogin && <Link to="/analisis" className="nav-link">
                 Login
-              </Link> : <Link to="/admin" className="nav-link">
+              </Link> }
+            {!isLogin && <Link to="/admin" className="nav-link">
                 Dashboard
-            </Link>}
+            </Link> }
             
           </Nav>
         </Navbar.Collapse>

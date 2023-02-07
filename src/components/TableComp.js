@@ -1,12 +1,15 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
+import { ModalContext } from '../context/ModalContext'
 
 const TableComp = () => {
     const { isLogin } = React.useContext(AuthContext);
+    const {handleShow, show} = React.useContext(ModalContext);
     const [products, setProducts] = React.useState();
     const getProducts = async () => {
+        console.log('ini adalah show modal');
+        console.log(show)
         const res = await axios.get('https://fajartimur.com/api/items/');
         setProducts(res.data.results)
     }
@@ -48,7 +51,7 @@ const TableComp = () => {
                       {d.price}
                   </td>
                   {!isLogin && <td>
-                    <Link to={`edit/${d.id}`} className="btn btn-primary">Edit</Link>
+                    <button onClick={handleShow} className="btn btn-primary">Edit</button>
                     <button className="btn btn-danger ms-3">Delete</button>
                   </td> }
                   
